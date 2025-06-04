@@ -1,7 +1,12 @@
 import subprocess
 import time
 import json
-
+SPACE_LABELS = [
+    "SCHOOL",
+    "JOB SEARCH",
+    "LASSO",
+    "PERSONAL"
+]
 def start_yabai() -> None:
     command = ["/opt/homebrew/bin/yabai", "--verbose"]
     subprocess.Popen(command) # this will open the socket for yabai in the background so that the rest of the script doesnt get held up
@@ -22,8 +27,15 @@ def get_screen_index(json_output: str) -> int:
             return screen.get("index")
     return -1
 
+
+def label_screen(index: int) -> str:
+    print(SPACE_LABELS[index-1])
+    return SPACE_LABELS[index-1]
+
+
 if __name__ == '__main__':
     start_yabai()
     time.sleep(1) # wait a second for the socket to spin up
-    json_output = run_yabai()
-    get_screen_index(json_output)
+    json_output: str = run_yabai() # returns screen index as json
+    current_index: int = get_screen_index(json_output) # finds the current screen
+    label_screen(current_index)
