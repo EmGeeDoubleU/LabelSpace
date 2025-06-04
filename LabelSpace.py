@@ -14,9 +14,13 @@ def start_yabai() -> None:
 def run_yabai() -> str:
     command = ["/opt/homebrew/bin/yabai", "-m", "query", "--spaces"]
     print(f"running command {' '.join(command)}")
-    result = subprocess.run(command, capture_output=True, text=True)
-    print("stdout:",result.stdout)
-    print("stderr:", result.stderr)
+    result= subprocess.run(command, capture_output=True, text=True)
+    #print("stdout:",result.stdout)
+    #print("stderr:", result.stderr)
+    while (result.stderr):
+        start_yabai()
+        time.sleep(1)
+        run_yabai()
     return result.stdout
 
 def get_screen_index(json_output: str) -> int:
@@ -34,8 +38,8 @@ def label_screen(index: int) -> str:
 
 
 if __name__ == '__main__':
-    start_yabai()
-    time.sleep(1) # wait a second for the socket to spin up
+    
+     # wait a second for the socket to spin up
     json_output: str = run_yabai() # returns screen index as json
     current_index: int = get_screen_index(json_output) # finds the current screen
     label_screen(current_index)
