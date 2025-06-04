@@ -14,14 +14,16 @@ def start_yabai() -> None:
 def run_yabai() -> str:
     command = ["/opt/homebrew/bin/yabai", "-m", "query", "--spaces"]
     print(f"running command {' '.join(command)}")
-    result= subprocess.run(command, capture_output=True, text=True)
     #print("stdout:",result.stdout)
     #print("stderr:", result.stderr)
-    while (result.stderr):
+    while True:
+        result= subprocess.run(command, capture_output=True, text=True)
+        if not result.stderr:
+            return result.stdout
+        
         start_yabai()
         time.sleep(1)
-        run_yabai()
-    return result.stdout
+    
 
 def get_screen_index(json_output: str) -> int:
     screens = json.loads(json_output)
