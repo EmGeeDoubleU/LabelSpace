@@ -3,6 +3,24 @@ LabelSpace
 LabelSpace is a macOS menu bar utility that displays custom labels for your virtual desktops (Spaces). macOS does not provide a native way to rename desktops, and LabelSpace fills that gap by showing a label in your menu bar to help you remember the purpose of each space (e.g., "SCHOOL", "JOB SEARCH").
 
 ---
+## Example Menu Bar Labels
+
+Here are three example screenshots showing how the desktop labels appear in the macOS menu bar:
+
+![Job Search](Example_1.png)
+
+![School](Example_2.png)
+
+![Personal](Example_3.png)
+
+Each space has:
+- A custom label (e.g., “SCHOOL” or “JOB SEARCH”)
+- A color-coded icon to make it visually distinctive
+- Live updates based on which desktop (Space) is currently active
+
+This gives you persistent awareness of your current context, directly from the menu bar.
+
+---
 
 ## Features
 
@@ -115,6 +133,37 @@ LabelSpace/
 ├── README.md           # This file
 └── venv/               # Python virtual environment (optional)
 ```
+---
+Here’s the section you can add to your README:
+
+---
+
+##  Prevent macOS from Reordering Desktops Automatically
+
+By default, macOS Mission Control will automatically rearrange your Desktops (Spaces) based on which one you use most recently. This can cause issues if you’re labeling desktops and expect them to stay in a fixed order.
+
+To **disable this behavior**, run the following command in Terminal:
+
+```
+defaults write com.apple.dock mru-spaces -bool false && killall Dock
+```
+
+###  What this does:
+
+* `mru-spaces -bool false` tells macOS **not to reorder Spaces automatically**.
+* `killall Dock` restarts the Dock so the setting takes effect immediately.
+
+If you ever want to re-enable automatic rearranging:
+
+```
+defaults write com.apple.dock mru-spaces -bool true && killall Dock
+```
+
+This setting ensures that your custom-labeled Spaces remain in a consistent, manual order — critical if you're relying on them for focused workflows or visual overlays.
+
+---
+
+Let me know if you'd like a script to toggle this on/off programmatically.
 
 ---
 
