@@ -163,10 +163,6 @@ This setting ensures that your custom-labeled Spaces remain in a consistent, man
 
 ---
 
-Let me know if you'd like a script to toggle this on/off programmatically.
-
----
-
 ## License
 
 MIT License. See `LICENSE` file.
