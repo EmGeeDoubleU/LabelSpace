@@ -45,7 +45,7 @@ brew install koekeishiya/formulae/yabai
 Start the service:
 
 ```
-brew services start yabai
+yabai --start-service
 ```
 
 Make sure you grant yabai accessibility permissions in:
