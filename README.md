@@ -38,13 +38,14 @@ This gives you persistent awareness of your current context, directly from the m
 
 LabelSpace uses yabai to get the current space index.
 
+```
 brew install koekeishiya/formulae/yabai
-
+```
 
 Start the service:
 
 ```
-sudo yabai --start-service
+brew services start yabai
 ```
 
 Make sure you grant yabai accessibility permissions in:
